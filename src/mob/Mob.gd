@@ -6,6 +6,8 @@ export var max_speed = 18
 
 var velocity = Vector3.ZERO
 
+signal squashed
+
 func _physics_process(delta: float) -> void:
     move_and_slide(velocity)
     
@@ -23,4 +25,8 @@ func initialize(start_position, player_position):
     
 
 func _on_VisibilityNotifier_screen_exited() -> void:
+    queue_free()
+
+func squash():
+    emit_signal("squashed")
     queue_free()
